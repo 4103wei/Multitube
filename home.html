@@ -1,0 +1,145 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+body{
+  background: black;
+}
+
+.lcolumn {
+  float: left;
+  width: 90%;
+  padding: 0px;
+}
+.rcolumn {
+  float: right;
+  width: 10%;
+  padding: 0px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.button {
+  border: none;
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 1px 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+
+}
+
+.choosefile {
+  border: none;
+  background-color: none;
+  border: none;
+  color: white;
+  padding: 1px 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+
+}
+</style>
+</head>
+
+
+<body>
+<div class="row">
+  <div class="lcolumn">
+	<iframe id="iframe0" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe id="iframe1" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe id="iframe2" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+	<iframe id="iframe3" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe id="iframe4" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe id="iframe5" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+	<iframe id="iframe6" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe id="iframe7" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe id="iframe8" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+  <div class="rcolumn">
+	<textarea id="turl_0" rows="1"></textarea>
+	<textarea id="turl_1" rows="1"></textarea>
+	<textarea id="turl_2" rows="1"></textarea>
+	<textarea id="turl_3" rows="1"></textarea>
+	<textarea id="turl_4" rows="1"></textarea>
+	<textarea id="turl_5" rows="1"></textarea>
+	<textarea id="turl_6" rows="1"></textarea>
+	<textarea id="turl_7" rows="1"></textarea>
+	<textarea id="turl_8" rows="1"></textarea>
+	<button class="button" type="button" onclick="refresh()">Refresh</button>
+	<button class="button" type="button" onclick="download(urls, 'playlist', 'text')">Save</button>
+
+	</br></br>
+	<input class="choosefile" style='width:12em' type="file" onchange="readFile(this)">
+  </div>
+</div>
+
+
+
+<script>
+let urls = ['','','','','','','','','']
+
+
+function readFile(input) {
+	let file = input.files[0];
+	let reader = new FileReader();
+	reader.readAsText(file);
+	reader.onload = function() {
+		var arr = reader.result.split(",");
+		var i;
+		for (i = 0; i < 9; i++) {
+			document.getElementById("turl_" + String(i)).value = arr[i]
+		}
+  	};
+}
+
+
+
+
+
+function refresh() {
+	var i;
+	for (i = 0; i < 9; i++) {
+		if (urls[i] != String(document.getElementById("turl_" + String(i)).value)){
+			urls[i] = String(document.getElementById("turl_" + String(i)).value);
+			document.getElementById("iframe" + String(i)).src = "https://www.youtube.com/embed/" + urls[i] + "?autoplay=1&vq=medium"
+		}
+	}
+}
+
+
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"), url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+
+
+</script>
+</body>
+</html>
