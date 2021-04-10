@@ -1,0 +1,166 @@
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body{
+  background: black;
+}
+
+.lcolumn {
+  float: left;
+  width: 90%;
+  padding: 0px;
+}
+
+.rcolumn {
+  float: right;
+  width: 10%;
+  padding: 0px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.button {
+  border: none;
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 1px 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+
+}
+
+.choosefile {
+  border: none;
+  background-color: none;
+  border: none;
+  color: white;
+  padding: 1px 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+    </style>
+</head>
+
+
+<body>
+<div class="row">
+    <div class="lcolumn">
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe0" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe1" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe2" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe3" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe4" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe5" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe6" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe7" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe8" src=""
+                title="YouTube video player"
+                width="560"></iframe>
+    </div>
+    <div class="rcolumn">
+        <textarea id="turl_0" rows="1"></textarea>
+        <textarea id="turl_1" rows="1"></textarea>
+        <textarea id="turl_2" rows="1"></textarea>
+        <textarea id="turl_3" rows="1"></textarea>
+        <textarea id="turl_4" rows="1"></textarea>
+        <textarea id="turl_5" rows="1"></textarea>
+        <textarea id="turl_6" rows="1"></textarea>
+        <textarea id="turl_7" rows="1"></textarea>
+        <textarea id="turl_8" rows="1"></textarea>
+        <button class="button" onclick="refresh()" type="button">Refresh</button>
+        <button class="button" onclick="download(urls, 'playlist', 'text')" type="button">Save</button>
+
+        <br><br>
+        <input class="choosefile" onchange="readFile(this)" style='width:12em' type="file">
+    </div>
+</div>
+
+
+<script>
+let urls = ['','','','','','','','','']
+
+function readFile(input) {
+	let file = input.files[0];
+	let reader = new FileReader();
+	reader.readAsText(file);
+	reader.onload = function() {
+		var arr = reader.result.split(",");
+		var i;
+		for (i = 0; i < 9; i++) {
+			document.getElementById("turl_" + String(i)).value = arr[i]
+		}
+  	};
+}
+
+function refresh() {
+	var i;
+	for (i = 0; i < 9; i++) {
+		if (urls[i] != String(document.getElementById("turl_" + String(i)).value)){
+			urls[i] = String(document.getElementById("turl_" + String(i)).value);
+			document.getElementById("iframe" + String(i)).src = "https://www.youtube.com/embed/" + urls[i] + "?autoplay=1&vq=medium"
+		}
+	}
+}
+
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"), url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+</script>
+</body>
+</html>
