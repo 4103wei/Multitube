@@ -38,20 +38,36 @@ body{
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
+}
 
+.audio_button {
+  border: none;
+  background-color: #43a436;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 25px;
+  height: 12px;
 }
 
 .choosefile {
   border: none;
   background-color: none;
   border: none;
-  color: white;
+  color: black;
   padding: 1px 3px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 12px;
+  font-size: 10px;
 }
+
+.description{
+  color: white;
+  font-size: 11px;
+}
+
 
     </style>
 </head>
@@ -61,45 +77,46 @@ body{
 <div class="row">
     <div class="lcolumn">
         <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe0" src=""
+                allowfullscreen frameborder="0" height="315" id="iframe0" src="https://www.youtube.com/embed/?enablejsapi=1"
                 title="YouTube video player"
                 width="560"></iframe>
         <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe1" src=""
+                allowfullscreen frameborder="0" height="315" id="iframe1" src="https://www.youtube.com/embed/?enablejsapi=1"
                 title="YouTube video player"
                 width="560"></iframe>
         <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe2" src=""
-                title="YouTube video player"
-                width="560"></iframe>
-
-        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe3" src=""
-                title="YouTube video player"
-                width="560"></iframe>
-        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe4" src=""
-                title="YouTube video player"
-                width="560"></iframe>
-        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe5" src=""
+                allowfullscreen frameborder="0" height="315" id="iframe2" src="https://www.youtube.com/embed/?enablejsapi=1"
                 title="YouTube video player"
                 width="560"></iframe>
 
         <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe6" src=""
+                allowfullscreen frameborder="0" height="315" id="iframe3" src="https://www.youtube.com/embed/?enablejsapi=1"
                 title="YouTube video player"
                 width="560"></iframe>
         <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe7" src=""
+                allowfullscreen frameborder="0" height="315" id="iframe4" src="https://www.youtube.com/embed/?enablejsapi=1"
                 title="YouTube video player"
                 width="560"></iframe>
         <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen frameborder="0" height="315" id="iframe8" src=""
+                allowfullscreen frameborder="0" height="315" id="iframe5" src="https://www.youtube.com/embed/?enablejsapi=1"
+                title="YouTube video player"
+                width="560"></iframe>
+
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe6" src="https://www.youtube.com/embed/?enablejsapi=1"
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe7" src="https://www.youtube.com/embed/?enablejsapi=1"
+                title="YouTube video player"
+                width="560"></iframe>
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen frameborder="0" height="315" id="iframe8" src="https://www.youtube.com/embed/?enablejsapi=1"
                 title="YouTube video player"
                 width="560"></iframe>
     </div>
     <div class="rcolumn">
+        <div class="description">Youtube Video IDs</div>
         <textarea id="turl_0" rows="1"></textarea>
         <textarea id="turl_1" rows="1"></textarea>
         <textarea id="turl_2" rows="1"></textarea>
@@ -113,12 +130,131 @@ body{
         <button class="button" onclick="download(urls, 'playlist', 'text')" type="button">Save</button>
 
         <br><br>
+        <div class="description">Load Playlist</div>
         <input class="choosefile" onchange="readFile(this)" style='width:12em' type="file">
+
+
+        <br><br>
+        <div class="description">Active Audio</div>
+        <div>
+            <button class="audio_button" id="aud0" onclick="aud(0)" type="button"></button>
+            <button class="audio_button" id="aud1" onclick="aud(1)" type="button"></button>
+            <button class="audio_button" id="aud2" onclick="aud(2)" type="button"></button><br>
+            <button class="audio_button" id="aud3" onclick="aud(3)" type="button"></button>
+            <button class="audio_button" id="aud4" onclick="aud(4)" type="button"></button>
+            <button class="audio_button" id="aud5" onclick="aud(5)" type="button"></button><br>
+            <button class="audio_button" id="aud6" onclick="aud(6)" type="button"></button>
+            <button class="audio_button" id="aud7" onclick="aud(7)" type="button"></button>
+            <button class="audio_button" id="aud8" onclick="aud(8)" type="button"></button>
+        </div>
     </div>
 </div>
 
 
 <script>
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var player0, player1, player3, player4, player5, player6, player7, player8;
+
+function onYouTubeIframeAPIReady() {
+       player0 = new YT.Player('iframe0', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+       player1 = new YT.Player('iframe1', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+      player2 = new YT.Player('iframe2', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+      player3 = new YT.Player('iframe3', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+      player4 = new YT.Player('iframe4', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+      player5 = new YT.Player('iframe5', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+      player6 = new YT.Player('iframe6', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+      player7 = new YT.Player('iframe7', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+      player8 = new YT.Player('iframe8', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }});
+}
+
+function onPlayerReady() {
+  console.log("Player is ready.");
+}
+function onPlayerStateChange() {
+  console.log("Player state changed.");
+}
+
+
+function aud(num){
+    player0.mute();player1.mute();player2.mute();player3.mute();player4.mute();player5.mute();player6.mute();player7.mute();player8.mute();
+
+
+    switch(num) {
+      case 0:
+        player0.unMute();
+        break;
+      case 1:
+        player1.unMute();
+        break;
+      case 2:
+        player2.unMute();
+        break;
+      case 3:
+        player3.unMute();
+        break;
+      case 4:
+        player4.unMute();
+        break;
+      case 5:
+        player5.unMute();
+        break;
+      case 6:
+        player6.unMute();
+        break;
+      case 7:
+        player7.unMute();
+        break;
+      case 8:
+        player8.unMute();
+        break;
+      default:
+        break;
+    }
+}
+
+
+
+
 let urls = ['','','','','','','','','']
 
 function readFile(input) {
@@ -131,6 +267,7 @@ function readFile(input) {
 		for (i = 0; i < 9; i++) {
 			document.getElementById("turl_" + String(i)).value = arr[i]
 		}
+		refresh();
   	};
 }
 
@@ -139,7 +276,7 @@ function refresh() {
 	for (i = 0; i < 9; i++) {
 		if (urls[i] != String(document.getElementById("turl_" + String(i)).value)){
 			urls[i] = String(document.getElementById("turl_" + String(i)).value);
-			document.getElementById("iframe" + String(i)).src = "https://www.youtube.com/embed/" + urls[i] + "?autoplay=1&vq=medium"
+			document.getElementById("iframe" + String(i)).src = "https://www.youtube.com/embed/" + urls[i] + "?enablejsapi=1&autoplay=1&vq=medium&mute=1&controls=0&showinfo=0&cc_load_policy=0"
 		}
 	}
 }
@@ -160,6 +297,11 @@ function download(data, filename, type) {
         }, 0); 
     }
 }
+
+
+
+
+
 
 </script>
 </body>
