@@ -127,6 +127,7 @@ body{
         <textarea id="turl_7" rows="1"></textarea>
         <textarea id="turl_8" rows="1"></textarea>
         <button class="button" onclick="refresh()" type="button">Refresh</button>
+        <button class="button" onclick="allrefresh()" type="button">Refresh All</button>
         <button class="button" onclick="download(urls, 'playlist', 'text')" type="button">Save</button>
 
         <br><br>
@@ -293,6 +294,14 @@ function refresh() {
 			urls[i] = String(document.getElementById("turl_" + String(i)).value);
 			document.getElementById("iframe" + String(i)).src = "https://www.youtube.com/embed/" + urls[i] + "?enablejsapi=1&autoplay=1&vq=medium&mute=1&controls=0&showinfo=0&cc_load_policy=0"
 		}
+	}
+}
+
+function allrefresh() {
+	var i;
+	for (i = 0; i < 9; i++) {
+		urls[i] = String(document.getElementById("turl_" + String(i)).value);
+		document.getElementById("iframe" + String(i)).src = "https://www.youtube.com/embed/" + urls[i] + "?enablejsapi=1&autoplay=1&vq=medium&mute=1&controls=0&showinfo=0&cc_load_policy=0"
 	}
 }
 
