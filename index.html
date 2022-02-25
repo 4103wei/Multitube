@@ -217,51 +217,104 @@ function onPlayerStateChange() {
 
 
 function aud(num){
-    player0.mute();player1.mute();player2.mute();player3.mute();player4.mute();player5.mute();player6.mute();player7.mute();player8.mute();
-
+    //player0.mute();player1.mute();player2.mute();player3.mute();player4.mute();player5.mute();player6.mute();player7.mute();player8.mute();
 	// change all button colors back to normal
-	var elements = document.getElementsByClassName('audio_button'); // get all elements
-	for(var i = 0; i < elements.length; i++){
-		elements[i].style.backgroundColor = "white";
-	}
+	//var elements = document.getElementsByClassName('audio_button'); // get all elements
+	//for(var i = 0; i < elements.length; i++){
+	//	elements[i].style.backgroundColor = "white";
+	//}
 
 
     switch(num) {
       case 0:
-	document.getElementById('aud0').style.backgroundColor = "red";
-        player0.unMute();
+	if(player0.isMuted())
+	{
+		document.getElementById('aud0').style.backgroundColor = "red";
+        	player0.unMute();
+	}else{
+		document.getElementById('aud0').style.backgroundColor = "white";
+        	player0.mute();
+	}
         break;
       case 1:
-	document.getElementById('aud1').style.backgroundColor = "red";
-        player1.unMute();
+	if(player1.isMuted())
+	{
+		document.getElementById('aud1').style.backgroundColor = "red";
+        	player1.unMute();
+	}else{
+		document.getElementById('aud1').style.backgroundColor = "white";
+        	player1.mute();
+	}
         break;
       case 2:
-	document.getElementById('aud2').style.backgroundColor = "red";
-        player2.unMute();
+	if(player2.isMuted())
+	{
+		document.getElementById('aud2').style.backgroundColor = "red";
+        	player2.unMute();
+	}else{
+		document.getElementById('aud2').style.backgroundColor = "white";
+        	player2.mute();
+	}
         break;
       case 3:
-	document.getElementById('aud3').style.backgroundColor = "red";
-        player3.unMute();
+	if(player3.isMuted())
+	{
+		document.getElementById('aud3').style.backgroundColor = "red";
+        	player3.unMute();
+	}else{
+		document.getElementById('aud3').style.backgroundColor = "white";
+        	player3.mute();
+	}
         break;
       case 4:
-	document.getElementById('aud4').style.backgroundColor = "red";
-        player4.unMute();
+	if(player4.isMuted())
+	{
+		document.getElementById('aud4').style.backgroundColor = "red";
+        	player4.unMute();
+	}else{
+		document.getElementById('aud4').style.backgroundColor = "white";
+        	player4.mute();
+	}
         break;
       case 5:
-	document.getElementById('aud5').style.backgroundColor = "red";
-        player5.unMute();
+	if(player5.isMuted())
+	{
+		document.getElementById('aud5').style.backgroundColor = "red";
+        	player5.unMute();
+	}else{
+		document.getElementById('aud5').style.backgroundColor = "white";
+        	player5.mute();
+	}
         break;
       case 6:
-	document.getElementById('aud6').style.backgroundColor = "red";
-        player6.unMute();
+	if(player6.isMuted())
+	{
+		document.getElementById('aud6').style.backgroundColor = "red";
+        	player6.unMute();
+	}else{
+		document.getElementById('aud6').style.backgroundColor = "white";
+        	player6.mute();
+	}
         break;
       case 7:
-	document.getElementById('aud7').style.backgroundColor = "red";
-        player7.unMute();
+	if(player7.isMuted())
+	{
+		document.getElementById('aud7').style.backgroundColor = "red";
+        	player7.unMute();
+	}else{
+		document.getElementById('aud7').style.backgroundColor = "white";
+        	player7.mute();
+	}
         break;
       case 8:
-	document.getElementById('aud8').style.backgroundColor = "red";
-        player8.unMute();
+	if(player8.isMuted())
+	{
+		document.getElementById('aud8').style.backgroundColor = "red";
+        	player8.unMute();
+	}else{
+		document.getElementById('aud8').style.backgroundColor = "white";
+        	player8.mute();
+	}
         break;
       default:
         break;
